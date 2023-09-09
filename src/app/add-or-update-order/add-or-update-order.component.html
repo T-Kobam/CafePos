@@ -1,16 +1,20 @@
 <p>add-or-update-order works!</p>
 
-<div>
-    <label for="customer-name">Customer Name: </label>
-    <input for="customer-name" type="text" placeholder="Your Name" value="{{orders[0].customerName}}">
-</div>
-
-<div>
-    <div *ngFor="let item of getMenuItems(); index as i">
-        <label for="{{'img-' + i}}">{{item.name}} @ {{item.price}}</label>
-        <input type="number" min="0" max="100" value="0">    
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div formGroupName="customerInfo">
+        <label for="customer-name">Customer Name: </label>
+        <input formControlName="customerName" for="customer-name" type="text" placeholder="Your Name">
     </div>
 
-    <p>Order total: 8.00</p>
-    <button>Submit/Update Order</button>
-</div>
+    <div>
+        <div *ngFor="let item of getMenuItems(); index as i" formGroupName="orderInfo">
+            <div [formGroupName]="i">
+                <label for="{{'img-' + i}}">{{item.name}} @ {{item.price}}</label>
+                <input type="number" min="0" max="100" value="0" formControlName="items" (change)="onChange($event)">
+            </div>
+        </div>
+
+        <p>Order total: {{total}}</p>
+        <button type="submit">Submit/Update Order</button>
+    </div>
+</form>

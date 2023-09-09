@@ -7,6 +7,7 @@ import { CurrentOrdersComponent } from './current-orders/current-orders.componen
 import { CompletedOrdersComponent } from './completed-orders/completed-orders.component';
 import { AddOrUpdateOrderComponent } from './add-or-update-order/add-or-update-order.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
